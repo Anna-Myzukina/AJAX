@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JS</title>
+        <meta charset="utf-8"/>
+        <style>
+            .Ann
+            {
+                background: red;
+                border: 2px solid black;
+                width: 400px;
+                height: 400px;
+            }    
+        </style>
+    </head>
+    <body>
+      <input id = "shop_ip" type = "button" value="ПОКАЗАТЬ МОЙ IP!">
+      <div id = "myip"></div>
+      <div class = "download">
+          <div class = "cl">
+              
+          </div>
+      </div>
+        
+        
+      <script>
+       window.onload = function()
+       {
+           document.querySelector("#shop_ip").onclick = function()
+           {
+                ajaxGet("progect_PHP.php");    
+                ajaxGet("progect_PHP.php" , function(){
+                    console.log("Ann");
+                });   
+           }
+       }
+       
+       function ajaxGet(url , callaback)
+       {
+          
+           var request = new XMLHttpRequest();
+           
+                var f = callaback || function(){
+                    console.log("don't pleas func");
+                }
+                
+               request.onreadystatechange = 
+               function()
+               {
+                  if(request.readyState == 4)
+                  {
+             document.querySelector("#myip").innerHTML = request.responseText;
+                    f()  
+                  }
+               }
+           
+               request.open("GET" ,url);
+               request.send();
+       }
+      </script>
+    </body>
+</html>
